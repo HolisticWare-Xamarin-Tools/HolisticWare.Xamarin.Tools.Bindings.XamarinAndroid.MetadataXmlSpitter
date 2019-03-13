@@ -57,8 +57,12 @@
             https://github.com/moljac/HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter
         </RepositoryUrl>
         <iconUrl>
-            https://en.gravatar.com/holisticware
+            https://secure.gravatar.com/avatar/b662959e712466f393541935b664d3c5
         </iconUrl>
+        <license>LICENSE</license>
+        <licenseUrl>
+            https://github.com/moljac/HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter/blob/master/LICENSE
+        </licenseUrl>
         <VersionPrefix>0.0.1</VersionPrefix>
         <!--
         VersionSuffix - For debugging and local nuget feed 
