@@ -1,0 +1,139 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackOnBuild>true</PackOnBuild>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    
+    <Description>MSBuild targets/tasks to add api.xml analysis support to Xamarin.Android bindings projects</Description>
+  </PropertyGroup>
+
+    <!--
+    Project as a NuGet package.
+    -->
+    <PropertyGroup>
+        <PackOnBuild>true</PackOnBuild>
+        <!-- 
+        Suppresses the warnings about the package not having assemblies in lib/*/.dll.
+        -->
+        <NoPackageAnalysis>true</NoPackageAnalysis>
+        <!-- 
+        Change the default location where NuGet will put the build output 
+        
+           This changes the default folder where assemblies will be placed in the package.
+            The default is 'lib', but that is incorrect since these assemblies are mean to be used
+            by MSBuild, and to meant to be referenced as API from the NuGet package.
+        
+            tools/
+            tasks/
+        -->
+        <BuildOutputTargetFolder>tools</BuildOutputTargetFolder>
+        <!-- 
+        put the package output into a nuget test folder 
+        -->
+        <PackageOutputPath>$(HOME)/nuget-local</PackageOutputPath>
+        
+        <!-- 
+        nuget packaging
+        -->
+        <PackageId>HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter</PackageId>
+        <Title>
+            HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter
+        </Title>
+        <summary>
+            MSBuild targets/tasks to add ApiXml analysis and Metadata generation support to Xamarin.Android bindings projects
+        </summary>
+        <Description>
+            MSBuild targets/tasks to add ApiXml analysis and Metadata generation support to Xamarin.Android bindings projects
+        </Description>
+        <Owners>moljac, HolisticWare</Owners>
+        <Authors>moljac, HolisticWare</Authors>
+        <Copyright>2019</Copyright>
+        <ProjectUrl>
+            https://github.com/moljac/HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter
+        </ProjectUrl>
+        <RepositoryUrl>
+            https://github.com/moljac/HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter
+        </RepositoryUrl>
+        <iconUrl>
+            https://en.gravatar.com/holisticware
+        </iconUrl>
+        <VersionPrefix>0.0.1</VersionPrefix>
+        <!--
+        VersionSuffix - For debugging and local nuget feed 
+        <VersionSuffix>alpha-$([System.DateTime]::Now.ToString('yyyyMMddHHmmss'))</VersionSuffix>
+        <PackageVersion>$(Version)</PackageVersion>
+        -->        
+        <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+        <PackageTags>
+            xamarin, android, bindings, utilities, api.xml, analysis, metadata, metadata.xml, holisticware
+        </PackageTags>
+    </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      PrivateAssets="All" is essential. This prevents these build-only dependencies
+      from ending up in the NuGet package's list of dependencies.
+     -->
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="15.8.166" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="15.8.166" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.8.166" PrivateAssets="All" />
+    <!-- 
+        marks all packages as 'local only' so they don't end up in the nuspec 
+    -->
+    <PackageReference Update="@(PackageReference)" PrivateAssets="All" />        
+  </ItemGroup>
+
+    <PropertyGroup>  
+        <!--
+        <EnableDefaultItems>false</EnableDefaultItems>
+        -->
+        <BindingsHelperFolder>$(MSBuildThisFileDirectory)/holisticware-generated</BindingsHelperFolder>  
+        <BindingsHelperFolderApiXmlSpitterOutput>$(BindingsHelperFolder)/api.xml</BindingsHelperFolderApiXmlSpitterOutput>  
+    </PropertyGroup>  
+    
+    <ItemGroup>
+        <None Include="$(MSBuildThisFileDirectory)/build/HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.targets" PackagePath="build/" Pack="true">
+        </None>
+        <None Include="$(MSBuildThisFileDirectory)/build/HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.props" PackagePath="build/" Pack="true">
+        </None>
+        <!--
+        https://docs.microsoft.com/en-us/dotnet/core/tools/csproj#contenttargetfolders
+        https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets#including-content-in-a-package
+        
+        PackagePath="lib"
+        -->
+        <Content Include="$(BindingsHelperFolderApiXmlSpitterOutput)/.gitignore" Pack="true">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="$(BindingsHelperFolder)/.gitignore">
+          <Pack>true</Pack>
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="holisticware-generated\Transforms\Metadata.xml">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="holisticware-generated\Transforms\Metadata.Namespaces.xml">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="LICENSE">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="build\" />
+    <Folder Include="holisticware-generated\" />
+    <Folder Include="holisticware-generated\api.xml\" />
+    <Folder Include="holisticware-generated\Transforms\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="holisticware-generated\api.xml\.gitignore" />
+    <None Remove="holisticware-generated\.gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PackagesToNamespacesSpitter.cs" />
+  </ItemGroup>
+</Project>
