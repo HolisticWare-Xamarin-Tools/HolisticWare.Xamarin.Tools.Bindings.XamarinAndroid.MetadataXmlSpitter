@@ -5,6 +5,20 @@
  -->
 <Project>
 
+    <ItemGroup>
+        <FilesMetadata Include="$(MSBuildProjectDirectory)/Transforms/Metadata.Namespaces.xml" />
+    </ItemGroup>
+    <Target Name="PrepareFileMetadataNamespaces">
+        <CreateItem
+            Include="@(FilesMetadata)"
+            AdditionalMetadata="MyMetadata=Hello"
+            >
+            <Output
+                TaskParameter="Include"
+                ItemName="TransformFile"
+                />
+        </CreateItem>
+    </Target>
     <PropertyGroup>  
         <!--
         <EnableDefaultItems>false</EnableDefaultItems>
@@ -27,6 +41,9 @@
         ReferenceJar
         TransformFile
     -->  
+
+    
+    
     <PropertyGroup>
         <TaskFolder>netstandard2.0</TaskFolder>
         <!--
@@ -50,6 +67,7 @@
             >            
             </HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.PackagesToNamespacesSpitter>
     </Target>
+    
     
     <!--
     Debugging MSBuild Tasks
