@@ -1,3 +1,12 @@
-# HolisticWare.Xamarin.Tools.XamarinAndroid.Bindings.Tools.ApiXmlSpitter
+# HolisticWare.Xamarin.Tools.XamarinAndroid.Bindings.MetadataXmlSpitter
 
-Api.xml analysis and search
+Metadata
+
+*   verification based on `Metadata*.xml`
+
+*   analysis and metadata generation based on:
+
+    *   `api.xml`
+
+    *   binary logger output (`*.binlog`)
+
