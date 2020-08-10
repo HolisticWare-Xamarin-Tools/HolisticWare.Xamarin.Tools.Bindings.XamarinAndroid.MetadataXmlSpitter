@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.0.0.2\build\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.props" Condition="Exists('..\packages\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.0.0.2\build\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.props')" />
+  <Import Project="..\packages\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.0.0.3-alpha-20200809200802\build\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.props" Condition="Exists('..\packages\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.0.0.3-alpha-20200809200802\build\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -48,11 +48,11 @@
   <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />
     <None Include="Jars\AboutJars.txt" />
-    <None Include="LICENSE" />
     <None Include="holisticware-generated\Transforms\Metadata.xml" />
     <None Include="holisticware-generated\Transforms\Metadata.Namespaces.xml" />
     <None Include="holisticware-generated\api.xml\.gitignore" />
     <None Include="holisticware-generated\.gitignore" />
+    <None Include="LICENSE" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -61,9 +61,9 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-protobuf-lite-1.14.0.jar">
-      <Link>Jars\grpc-protobuf-lite-1.14.0.jar</Link>
-    </EmbeddedJar>
+    <LibraryProjectZip Include="..\..\externals\android\cronet-api-76.3809.111.aar">
+      <Link>Jars\cronet-api-76.3809.111.aar</Link>
+    </LibraryProjectZip>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
     
@@ -96,5 +96,5 @@
         <RunCLIJavaDecompilerBytecodeViewerSmali>true</RunCLIJavaDecompilerBytecodeViewerSmali>                
     </PropertyGroup>
     
-    <Import Project="..\packages\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.0.0.2\build\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.targets" Condition="Exists('..\packages\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.0.0.2\build\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.targets')" />
+    <Import Project="..\packages\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.0.0.3-alpha-20200809200802\build\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.targets" Condition="Exists('..\packages\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.0.0.3-alpha-20200809200802\build\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.targets')" />
 </Project>

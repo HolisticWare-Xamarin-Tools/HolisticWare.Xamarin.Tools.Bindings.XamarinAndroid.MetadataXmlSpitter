@@ -1,17 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <!--
-  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
-  
-  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
-  -->
+
     <attr
-        path="/api/package[@name='io.grpc.protobuf.lite']"
+        path="/api/package[@name='org.chromium.net']"
         name="managedName"
         >
-        io.grpc.protobuf.lite.HeyDev.DotNettifyThis
+        Xamarin.Chromium.CroNet
     </attr>
-     
+    <attr
+        path="/api/package[@name='org.chromium.net.impl']"
+        name="managedName"
+        >
+        Xamarin.Chromium.CroNet.Impl
+    </attr>
+    
+
+    <attr
+        path="/api/package[@name='org.chromium.net']/class[@name='ExperimentalBidirectionalStream.Builder']/method[@name='addHeader' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String']]"
+        name="managedReturn"
+        >
+        Xamarin.Chromium.CroNet.BidirectionalStream.Builder
+    </attr>
+    
 </metadata>

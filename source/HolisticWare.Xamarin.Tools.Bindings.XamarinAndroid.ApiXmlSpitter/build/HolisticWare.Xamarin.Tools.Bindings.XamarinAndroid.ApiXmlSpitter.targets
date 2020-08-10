@@ -56,6 +56,13 @@
         TaskName="HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter.PackagesToNamespacesSpitter" 
         AssemblyFile="$(TaskAssembly)" 
         />
+        <!--
+        Targets:
+        _ExportJarToXml
+            after
+        GenerateBindings
+            before
+        -->
         <Target
             Name="Run_PackagesToNamespacesSpitter" 
             AfterTargets="CoreCompile"

@@ -1,4 +1,5 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+    
   <!--
   https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
     
@@ -60,14 +61,18 @@
         <!--
         -->
         <TransformFile Include="Transforms\*.xml" />
+        <TransformFile Include="Transforms\*.xml" />
     </ItemGroup>
-    <ItemGroup>
-        <EmbeddedJar Include="..\..\externals\android\grpc-stub-1.14.0.jar">
-          <Link>Jars\grpc-stub-1.14.0.jar</Link>
-        </EmbeddedJar>
-    </ItemGroup>
+  <ItemGroup>
+    <LibraryProjectZip Include="..\..\externals\android\cronet-api-76.3809.111.aar">
+      <Link>Jars\cronet-api-76.3809.111.aar</Link>
+    </LibraryProjectZip>
+  </ItemGroup>
     
     
+  <ItemGroup>
+    <PackageReference Include="HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.ApiXmlSpitter" Version="0.0.3-alpha-20200809200802" />
+  </ItemGroup>
     <PropertyGroup>
         <!--
             Customizations default values:
@@ -97,9 +102,6 @@
         <RunCLIJavaDecompilerBytecodeViewerSmali>true</RunCLIJavaDecompilerBytecodeViewerSmali>                
     </PropertyGroup>
     
-  <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
-  </ItemGroup>
 
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
